@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Computer {
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
 
     @Column
     private int year;
@@ -28,11 +28,11 @@ public class Computer {
     private String graphics;
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
