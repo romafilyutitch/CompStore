@@ -16,7 +16,7 @@ public class Computer {
     private String processor;
 
     @Column
-    private String boxColor;
+    private String color;
 
     @Column
     private String ram;
@@ -52,12 +52,12 @@ public class Computer {
         this.processor = processor;
     }
 
-    public String getBoxColor() {
-        return boxColor;
+    public String getColor() {
+        return color;
     }
 
-    public void setBoxColor(String boxColor) {
-        this.boxColor = boxColor;
+    public void setColor(String boxColor) {
+        this.color = boxColor;
     }
 
     public String getRam() {
@@ -89,12 +89,12 @@ public class Computer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Computer computer = (Computer) o;
-        return id == computer.id && year == computer.year && Objects.equals(processor, computer.processor) && Objects.equals(boxColor, computer.boxColor) && Objects.equals(ram, computer.ram) && Objects.equals(hdd, computer.hdd) && Objects.equals(graphics, computer.graphics);
+        return id == computer.id && year == computer.year && Objects.equals(processor, computer.processor) && Objects.equals(color, computer.color) && Objects.equals(ram, computer.ram) && Objects.equals(hdd, computer.hdd) && Objects.equals(graphics, computer.graphics);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, year, processor, boxColor, ram, hdd, graphics);
+        return Objects.hash(id, year, processor, color, ram, hdd, graphics);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Computer {
                 "id=" + id +
                 ", year=" + year +
                 ", processor='" + processor + '\'' +
-                ", boxColor='" + boxColor + '\'' +
+                ", boxColor='" + color + '\'' +
                 ", ram='" + ram + '\'' +
                 ", hdd='" + hdd + '\'' +
                 ", graphics='" + graphics + '\'' +
