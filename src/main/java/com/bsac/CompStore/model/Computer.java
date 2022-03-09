@@ -27,6 +27,8 @@ public class Computer {
     @Column
     private String graphics;
 
+    @Column
+    private double price;
 
     public int getId() {
         return id;
@@ -56,8 +58,8 @@ public class Computer {
         return color;
     }
 
-    public void setColor(String boxColor) {
-        this.color = boxColor;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getRam() {
@@ -84,17 +86,25 @@ public class Computer {
         this.graphics = graphics;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Computer computer = (Computer) o;
-        return id == computer.id && year == computer.year && Objects.equals(processor, computer.processor) && Objects.equals(color, computer.color) && Objects.equals(ram, computer.ram) && Objects.equals(hdd, computer.hdd) && Objects.equals(graphics, computer.graphics);
+        return id == computer.id && year == computer.year && Double.compare(computer.price, price) == 0 && Objects.equals(processor, computer.processor) && Objects.equals(color, computer.color) && Objects.equals(ram, computer.ram) && Objects.equals(hdd, computer.hdd) && Objects.equals(graphics, computer.graphics);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, year, processor, color, ram, hdd, graphics);
+        return Objects.hash(id, year, processor, color, ram, hdd, graphics, price);
     }
 
     @Override
@@ -103,10 +113,11 @@ public class Computer {
                 "id=" + id +
                 ", year=" + year +
                 ", processor='" + processor + '\'' +
-                ", boxColor='" + color + '\'' +
+                ", color='" + color + '\'' +
                 ", ram='" + ram + '\'' +
                 ", hdd='" + hdd + '\'' +
                 ", graphics='" + graphics + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
