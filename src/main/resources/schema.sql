@@ -1,5 +1,6 @@
 create table computer(
     id int not null primary key auto_increment,
+    name varchar(100) not null,
     year int not null,
     processor varchar(100) not null,
     color varchar(100) not null,

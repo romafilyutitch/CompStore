@@ -9,19 +9,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/computers")
 public class ComputerController {
 
-    private ComputerRepository repository;
+    private final ComputerRepository repository;
 
     @Autowired
     public ComputerController(ComputerRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/")
-    public List<Computer> findAllComputers() {
-        return repository.findAll();
+    @GetMapping("/computers")
+    public List<Computer> findAllComputers(@RequestParam(required = false) String name) {
+        return name == null || name.isEmpty() ? repository.findAll() : repository.findComputersByNameContaining(name);
     }
 
     @GetMapping("/{id}")

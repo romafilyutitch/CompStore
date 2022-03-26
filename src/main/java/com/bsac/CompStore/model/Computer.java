@@ -10,6 +10,9 @@ public class Computer {
     private int id;
 
     @Column
+    private String name;
+
+    @Column
     private int year;
 
     @Column
@@ -36,6 +39,14 @@ public class Computer {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getYear() {
@@ -99,18 +110,19 @@ public class Computer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Computer computer = (Computer) o;
-        return id == computer.id && year == computer.year && Double.compare(computer.price, price) == 0 && Objects.equals(processor, computer.processor) && Objects.equals(color, computer.color) && Objects.equals(ram, computer.ram) && Objects.equals(hdd, computer.hdd) && Objects.equals(graphics, computer.graphics);
+        return id == computer.id && year == computer.year && Double.compare(computer.price, price) == 0 && Objects.equals(name, computer.name) && Objects.equals(processor, computer.processor) && Objects.equals(color, computer.color) && Objects.equals(ram, computer.ram) && Objects.equals(hdd, computer.hdd) && Objects.equals(graphics, computer.graphics);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, year, processor, color, ram, hdd, graphics, price);
+        return Objects.hash(id, name, year, processor, color, ram, hdd, graphics, price);
     }
 
     @Override
     public String toString() {
         return "Computer{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", year=" + year +
                 ", processor='" + processor + '\'' +
                 ", color='" + color + '\'' +
