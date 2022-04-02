@@ -23,7 +23,7 @@ public class ComputerController {
         return name == null || name.isEmpty() ? repository.findAll() : repository.findComputersByNameContaining(name);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/computers/{id}")
     public Optional<Computer> findById(@PathVariable int id) {
         return repository.findById(id);
     }
