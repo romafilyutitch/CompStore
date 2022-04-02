@@ -7,7 +7,7 @@ import java.util.Objects;
 public class GraphicsUnit extends Product {
 
     @Enumerated(EnumType.STRING)
-    private Type graphicsType;
+    private Type type;
 
     @Column
     private String brand;
@@ -15,12 +15,12 @@ public class GraphicsUnit extends Product {
     @Column
     private String model;
 
-    public Type getGraphicsType() {
-        return graphicsType;
+    public Type getType() {
+        return type;
     }
 
-    public void setGraphicsType(Type graphicsType) {
-        this.graphicsType = graphicsType;
+    public void setType(Type graphicsType) {
+        this.type = graphicsType;
     }
 
     public String getBrand() {
@@ -44,18 +44,18 @@ public class GraphicsUnit extends Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GraphicsUnit that = (GraphicsUnit) o;
-        return graphicsType == that.graphicsType && Objects.equals(brand, that.brand) && Objects.equals(model, that.model);
+        return type == that.type && Objects.equals(brand, that.brand) && Objects.equals(model, that.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(graphicsType, brand, model);
+        return Objects.hash(type, brand, model);
     }
 
     @Override
     public String toString() {
         return "GraphicsUnit{" +
-                "graphicsType=" + graphicsType +
+                "graphicsType=" + type +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 "} " + super.toString();

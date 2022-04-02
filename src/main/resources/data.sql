@@ -1,5 +1,34 @@
-INSERT INTO computer (id, name, year, processor, color, ram, hdd, graphics, price) values (1, 'Lenovo Legion 5 Pro', 2000, 'Intel graphics', 'blue', 'DDR4 16GB', 'HDD 1000 GB', 'NVIDIA GeForce 1060', 1000.0);
-INSERT INTO computer (id, name, year, processor, color, ram, hdd, graphics, price) values (2, 'Test Computer', 2010, 'Intel i3', 'red', 'DDR4 8GB', 'HDD 2000GB', 'NVIDIA GeForce 2080', 2000.0);
-INSERT INTO computer (id, name, year, processor, color, ram, hdd, graphics, price) values (3, 'Mac book Pro', 2015, 'AMD Rysen A3', 'black', 'DDR4 32 GB', 'SSD 500GB', 'NVIDIA GeForce 2060', 1500.0);
-INSERT INTO computer (id, name, year, processor, color, ram, hdd, graphics, price) values (4, 'HP Pavilion', 2020, 'AMD Rysen A8', 'yellow', 'DDR4 32GB', 'SSD 1000GB', 'NVIDIA GeForce 2070', 3000.0);
-INSERT INTO computer (id, name, year, processor, color, ram, hdd, graphics, price) values (5, 'Lenovo Legion 4 Pro', 2021, 'Intel i5', 'black', 'DDR4 32GB', 'SSD 1000GB', 'NVIDIA GeForce 3070', 5000.0);
+insert into graphics_unit values (1, 300, 'Intel', 'HD Graphics', 'EMBEDDED')
+insert into graphics_unit values (2, 400, 'Intel', 'UHD Graphics', 'EMBEDDED')
+insert into graphics_unit values (3, 1000, 'Nvidia', 'Gforce RTX 1060', 'DISCRETE')
+insert into graphics_unit values (4, 1500, 'Nvidia', 'Gforce RTX 2060', 'DISCRETE')
+insert into graphics_unit values (5, 2500, 'Nvidia', 'Gforce RTX 3060', 'DISCRETE')
+
+insert into processor values (1, 300, 'Intel', 1, 1.1, 'Intel core')
+insert into processor values (2, 500, 'Intel', 2, 1.5, 'Intel core duo')
+insert into processor values (3, 700, 'Intel', 4, 2.1, 'Intel core i4')
+insert into processor values (4, 1000, 'Intel', 8, 2.6, 'Intel core i6')
+insert into processor values (5, 1500, 'Intel', 8, 2.9, 'Intel core i7')
+
+insert into random_access_memory values (1, 500, 1000, 'DDR3', 4)
+insert into random_access_memory values (2, 600, 1500, 'DDR3', 8)
+insert into random_access_memory values (3, 800, 2000, 'DDR4', 16)
+insert into random_access_memory values (4, 1000, 2500, 'DDR4', 32)
+insert into random_access_memory values (5, 1000, 3000, 'DDR4', 32)
+
+insert into read_memory values (1, 500, 'HDD', 500)
+insert into read_memory values (2, 1000, 'HDD', 1000)
+insert into read_memory values (3, 1500, 'HDD', 2000)
+insert into read_memory values (4, 3000, 'SSD', 2000)
+insert into read_memory values (5, 5000, 'SSD', 3000)
+
+insert into computer values (1, 3000, 'HAFF', 'MULTIMEDIA', 'FreeBSD', 3, 1, 3, 1)
+insert into computer values (2, 2000, 'HP', 'WORK', 'FreeBSD', 2, 3, 1, 4)
+insert into computer values (3, 2500, 'Lenovo', 'WORK', 'FreeBSD', 1, 3, 3, 4)
+insert into computer values (4, 2700, 'HP', 'WORK', 'FreeBSD', 2, 3, 1, 2)
+insert into computer values (5, 2300, 'Lenovo', 'WORK', 'FreeBSD', 2, 3, 2, 3)
+insert into computer values (6, 2200, 'HP', 'WORK', 'FreeBSD', 1, 3, 1, 4)
+insert into computer values (7, 2100, 'Asus', 'WORK', 'FreeBSD', 2, 3, 1, 1)
+insert into computer values (8, 3000, 'HP', 'GAMING', 'FreeBSD', 2, 4, 4, 3)
+insert into computer values (9, 3700, 'Asus', 'GAMING', 'FreeBSD', 1, 4, 1, 3)
+insert into computer values (10, 3900, 'HP', 'WORK', 'FreeBSD', 2, 3, 2, 2)

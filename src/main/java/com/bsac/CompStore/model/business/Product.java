@@ -1,23 +1,23 @@
 package com.bsac.CompStore.model.business;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Product {
     @Id
-    private long id;
+    @GeneratedValue
+    private int id;
 
     @Column
     private double price;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,7 +1,11 @@
 package com.bsac.CompStore.model.business;
 
+import com.bsac.CompStore.repository.RandomAccessMemoryRepository;
+import com.bsac.CompStore.repository.ReadMemoryRepository;
+
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Random;
 
 @Entity
 public class Computer extends Product {
@@ -16,15 +20,19 @@ public class Computer extends Product {
     private String system;
 
     @OneToOne
+    @JoinColumn(name = "id")
+    private GraphicsUnit graphicsUnit;
+
+    @OneToOne
+    @JoinColumn(name = "id")
     private Processor processor;
 
     @OneToOne
-    private GraphicsUnit graphics;
-
-    @OneToOne
+    @JoinColumn(name = "id")
     private RandomAccessMemory randomAccessMemory;
 
     @OneToOne
+    @JoinColumn(name = "id")
     private ReadMemory readMemory;
 
     public Purpose getPurpose() {
@@ -51,20 +59,20 @@ public class Computer extends Product {
         this.system = system;
     }
 
+    public GraphicsUnit getGraphicsUnit() {
+        return graphicsUnit;
+    }
+
+    public void setGraphicsUnit(GraphicsUnit graphicsUnit) {
+        this.graphicsUnit = graphicsUnit;
+    }
+
     public Processor getProcessor() {
         return processor;
     }
 
     public void setProcessor(Processor processor) {
         this.processor = processor;
-    }
-
-    public GraphicsUnit getGraphics() {
-        return graphics;
-    }
-
-    public void setGraphics(GraphicsUnit graphics) {
-        this.graphics = graphics;
     }
 
     public RandomAccessMemory getRandomAccessMemory() {
@@ -89,12 +97,12 @@ public class Computer extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Computer computer = (Computer) o;
-        return Objects.equals(purpose, computer.purpose) && Objects.equals(brand, computer.brand) && Objects.equals(system, computer.system) && Objects.equals(processor, computer.processor) && Objects.equals(graphics, computer.graphics) && Objects.equals(randomAccessMemory, computer.randomAccessMemory) && Objects.equals(readMemory, computer.readMemory);
+        return purpose == computer.purpose && Objects.equals(brand, computer.brand) && Objects.equals(system, computer.system) && Objects.equals(graphicsUnit, computer.graphicsUnit) && Objects.equals(processor, computer.processor) && Objects.equals(randomAccessMemory, computer.randomAccessMemory) && Objects.equals(readMemory, computer.readMemory);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), purpose, brand, system, processor, graphics, randomAccessMemory, readMemory);
+        return Objects.hash(super.hashCode(), purpose, brand, system, graphicsUnit, processor, randomAccessMemory, readMemory);
     }
 
     @Override
@@ -103,8 +111,8 @@ public class Computer extends Product {
                 "purpose=" + purpose +
                 ", brand='" + brand + '\'' +
                 ", system='" + system + '\'' +
+                ", graphicsUnit=" + graphicsUnit +
                 ", processor=" + processor +
-                ", graphics=" + graphics +
                 ", randomAccessMemory=" + randomAccessMemory +
                 ", readMemory=" + readMemory +
                 "} " + super.toString();

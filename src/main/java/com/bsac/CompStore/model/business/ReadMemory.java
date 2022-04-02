@@ -2,6 +2,7 @@ package com.bsac.CompStore.model.business;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ public class ReadMemory extends Product {
     @Column
     private int volume;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Type type;
 
     public int getVolume() {
