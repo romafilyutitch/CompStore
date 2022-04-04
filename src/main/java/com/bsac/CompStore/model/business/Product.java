@@ -2,12 +2,12 @@ package com.bsac.CompStore.model.business;
 
 import javax.persistence.*;
 import java.util.Objects;
-
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Product {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column
@@ -41,8 +41,6 @@ public abstract class Product {
     public int hashCode() {
         return Objects.hash(id, price);
     }
-
-
 
     @Override
     public String toString() {

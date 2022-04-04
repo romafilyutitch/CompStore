@@ -1,9 +1,6 @@
 package com.bsac.CompStore.model.business;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +10,7 @@ public class ReadMemory extends Product {
     private int volume;
 
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private ReadMemoryType type;
 
     public int getVolume() {
         return volume;
@@ -23,11 +20,11 @@ public class ReadMemory extends Product {
         this.volume = volume;
     }
 
-    public Type getType() {
+    public ReadMemoryType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(ReadMemoryType type) {
         this.type = type;
     }
 
@@ -35,13 +32,14 @@ public class ReadMemory extends Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         ReadMemory that = (ReadMemory) o;
-        return volume == that.volume && Objects.equals(type, that.type);
+        return volume == that.volume && type == that.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(volume, type);
+        return Objects.hash(super.hashCode(), volume, type);
     }
 
     @Override
@@ -50,9 +48,5 @@ public class ReadMemory extends Product {
                 "volume=" + volume +
                 ", type=" + type +
                 "} " + super.toString();
-    }
-
-    enum Type {
-        HDD, SSD
     }
 }

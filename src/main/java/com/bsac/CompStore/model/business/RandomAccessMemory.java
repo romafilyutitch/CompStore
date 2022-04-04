@@ -1,18 +1,16 @@
 package com.bsac.CompStore.model.business;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class RandomAccessMemory extends Product {
+
     @Column
     private int volume;
 
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private RandomAccessMemoryType type;
 
     @Column
     private int frequency;
@@ -21,15 +19,15 @@ public class RandomAccessMemory extends Product {
         return volume;
     }
 
-    public void setVolume(int value) {
-        this.volume = value;
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 
-    public Type getType() {
+    public RandomAccessMemoryType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(RandomAccessMemoryType type) {
         this.type = type;
     }
 
@@ -45,13 +43,14 @@ public class RandomAccessMemory extends Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         RandomAccessMemory that = (RandomAccessMemory) o;
-        return volume == that.volume && frequency == that.frequency && Objects.equals(type, that.type);
+        return volume == that.volume && frequency == that.frequency && type == that.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(volume, type, frequency);
+        return Objects.hash(super.hashCode(), volume, type, frequency);
     }
 
     @Override
@@ -61,9 +60,5 @@ public class RandomAccessMemory extends Product {
                 ", type=" + type +
                 ", frequency=" + frequency +
                 "} " + super.toString();
-    }
-
-    enum Type{
-        DDR1, DDR2, DDR3, DDR4, DDR5
     }
 }

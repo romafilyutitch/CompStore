@@ -7,7 +7,7 @@ import java.util.Objects;
 public class GraphicsUnit extends Product {
 
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private GraphicsUnitType type;
 
     @Column
     private String brand;
@@ -15,12 +15,12 @@ public class GraphicsUnit extends Product {
     @Column
     private String model;
 
-    public Type getType() {
+    public GraphicsUnitType getType() {
         return type;
     }
 
-    public void setType(Type graphicsType) {
-        this.type = graphicsType;
+    public void setType(GraphicsUnitType type) {
+        this.type = type;
     }
 
     public String getBrand() {
@@ -43,25 +43,22 @@ public class GraphicsUnit extends Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         GraphicsUnit that = (GraphicsUnit) o;
         return type == that.type && Objects.equals(brand, that.brand) && Objects.equals(model, that.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, brand, model);
+        return Objects.hash(super.hashCode(), type, brand, model);
     }
 
     @Override
     public String toString() {
         return "GraphicsUnit{" +
-                "graphicsType=" + type +
+                "type=" + type +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 "} " + super.toString();
-    }
-
-    enum Type{
-        EMBEDDED, DISCRETE
     }
 }
