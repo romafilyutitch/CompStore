@@ -13,6 +13,12 @@ public class Computer extends Product {
     private String brand;
 
     @Column
+    private String name;
+
+    @Column
+    private int year;
+
+    @Column
     private String operationSystem;
 
     @Enumerated(EnumType.STRING)
@@ -65,6 +71,22 @@ public class Computer extends Product {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public String getOperationSystem() {
@@ -177,12 +199,12 @@ public class Computer extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Computer computer = (Computer) o;
-        return processorCoresAmount == computer.processorCoresAmount && Double.compare(computer.processorFrequency, processorFrequency) == 0 && randomAccessMemoryVolume == computer.randomAccessMemoryVolume && randomAccessMemoryFrequency == computer.randomAccessMemoryFrequency && readMemoryVolume == computer.readMemoryVolume && purpose == computer.purpose && Objects.equals(brand, computer.brand) && Objects.equals(operationSystem, computer.operationSystem) && graphicsUnitType == computer.graphicsUnitType && Objects.equals(graphicsUnitBrand, computer.graphicsUnitBrand) && Objects.equals(graphicsUnitModel, computer.graphicsUnitModel) && Objects.equals(processorBrand, computer.processorBrand) && Objects.equals(processorSeries, computer.processorSeries) && randomAccessMemoryType == computer.randomAccessMemoryType && readMemoryType == computer.readMemoryType;
+        return year == computer.year && processorCoresAmount == computer.processorCoresAmount && Double.compare(computer.processorFrequency, processorFrequency) == 0 && randomAccessMemoryVolume == computer.randomAccessMemoryVolume && randomAccessMemoryFrequency == computer.randomAccessMemoryFrequency && readMemoryVolume == computer.readMemoryVolume && purpose == computer.purpose && Objects.equals(brand, computer.brand) && Objects.equals(name, computer.name) && Objects.equals(operationSystem, computer.operationSystem) && graphicsUnitType == computer.graphicsUnitType && Objects.equals(graphicsUnitBrand, computer.graphicsUnitBrand) && Objects.equals(graphicsUnitModel, computer.graphicsUnitModel) && Objects.equals(processorBrand, computer.processorBrand) && Objects.equals(processorSeries, computer.processorSeries) && randomAccessMemoryType == computer.randomAccessMemoryType && readMemoryType == computer.readMemoryType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), purpose, brand, operationSystem, graphicsUnitType, graphicsUnitBrand, graphicsUnitModel, processorBrand, processorSeries, processorCoresAmount, processorFrequency, randomAccessMemoryVolume, randomAccessMemoryType, randomAccessMemoryFrequency, readMemoryVolume, readMemoryType);
+        return Objects.hash(super.hashCode(), purpose, brand, name, year, operationSystem, graphicsUnitType, graphicsUnitBrand, graphicsUnitModel, processorBrand, processorSeries, processorCoresAmount, processorFrequency, randomAccessMemoryVolume, randomAccessMemoryType, randomAccessMemoryFrequency, readMemoryVolume, readMemoryType);
     }
 
     @Override
@@ -190,6 +212,8 @@ public class Computer extends Product {
         return "Computer{" +
                 "purpose=" + purpose +
                 ", brand='" + brand + '\'' +
+                ", name='" + name + '\'' +
+                ", year=" + year +
                 ", operationSystem='" + operationSystem + '\'' +
                 ", graphicsUnitType=" + graphicsUnitType +
                 ", graphicsUnitBrand='" + graphicsUnitBrand + '\'' +
