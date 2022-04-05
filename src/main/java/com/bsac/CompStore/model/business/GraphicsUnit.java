@@ -4,7 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class GraphicsUnit extends Product {
+public class GraphicsUnit {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @Enumerated(EnumType.STRING)
     private GraphicsUnitType type;
@@ -14,6 +18,17 @@ public class GraphicsUnit extends Product {
 
     @Column
     private String model;
+
+    @Column
+    private double price;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public GraphicsUnitType getType() {
         return type;
@@ -39,26 +54,35 @@ public class GraphicsUnit extends Product {
         this.model = model;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         GraphicsUnit that = (GraphicsUnit) o;
-        return type == that.type && Objects.equals(brand, that.brand) && Objects.equals(model, that.model);
+        return id == that.id && Double.compare(that.price, price) == 0 && type == that.type && Objects.equals(brand, that.brand) && Objects.equals(model, that.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), type, brand, model);
+        return Objects.hash(id, type, brand, model, price);
     }
 
     @Override
     public String toString() {
         return "GraphicsUnit{" +
-                "type=" + type +
+                "id=" + id +
+                ", type=" + type +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                "} " + super.toString();
+                ", price=" + price +
+                '}';
     }
 }

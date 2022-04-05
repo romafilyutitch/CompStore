@@ -4,7 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Computer extends Product {
+public class Computer {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @Enumerated(EnumType.STRING)
     private ComputerPurpose purpose;
@@ -21,41 +25,32 @@ public class Computer extends Product {
     @Column
     private String operationSystem;
 
-    @Enumerated(EnumType.STRING)
-    private GraphicsUnitType graphicsUnitType;
-
     @Column
-    private String graphicsUnitBrand;
+    private double price;
 
-    @Column
-    private String graphicsUnitModel;
+    @OneToOne
+    @JoinColumn(name = "graphics_unit_id", referencedColumnName = "id")
+    private GraphicsUnit graphicsUnit;
 
-    @Column
-    private String processorBrand;
+    @OneToOne
+    @JoinColumn(name = "processor_id", referencedColumnName = "id")
+    private Processor processor;
 
-    @Column
-    private String processorSeries;
+    @OneToOne
+    @JoinColumn(name = "random_access_memory_id", referencedColumnName = "id")
+    private RandomAccessMemory randomAccessMemory;
 
-    @Column
-    private int processorCoresAmount;
+    @OneToOne
+    @JoinColumn(name = "read_memory_id", referencedColumnName = "id")
+    private ReadMemory readMemory;
 
-    @Column
-    private double processorFrequency;
+    public int getId() {
+        return id;
+    }
 
-    @Column
-    private int randomAccessMemoryVolume;
-
-    @Enumerated(EnumType.STRING)
-    private RandomAccessMemoryType randomAccessMemoryType;
-
-    @Column
-    private int randomAccessMemoryFrequency;
-
-    @Column
-    private int readMemoryVolume;
-
-    @Enumerated(EnumType.STRING)
-    private ReadMemoryType readMemoryType;
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public ComputerPurpose getPurpose() {
         return purpose;
@@ -97,136 +92,73 @@ public class Computer extends Product {
         this.operationSystem = operationSystem;
     }
 
-    public GraphicsUnitType getGraphicsUnitType() {
-        return graphicsUnitType;
+    public double getPrice() {
+        return price;
     }
 
-    public void setGraphicsUnitType(GraphicsUnitType graphicsUnitType) {
-        this.graphicsUnitType = graphicsUnitType;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getGraphicsUnitBrand() {
-        return graphicsUnitBrand;
+    public GraphicsUnit getGraphicsUnit() {
+        return graphicsUnit;
     }
 
-    public void setGraphicsUnitBrand(String graphicsUnitBrand) {
-        this.graphicsUnitBrand = graphicsUnitBrand;
+    public void setGraphicsUnit(GraphicsUnit graphicsUnit) {
+        this.graphicsUnit = graphicsUnit;
     }
 
-    public String getGraphicsUnitModel() {
-        return graphicsUnitModel;
+    public Processor getProcessor() {
+        return processor;
     }
 
-    public void setGraphicsUnitModel(String graphicsUnitModel) {
-        this.graphicsUnitModel = graphicsUnitModel;
+    public void setProcessor(Processor processor) {
+        this.processor = processor;
     }
 
-    public String getProcessorBrand() {
-        return processorBrand;
+    public RandomAccessMemory getRandomAccessMemory() {
+        return randomAccessMemory;
     }
 
-    public void setProcessorBrand(String processorBrand) {
-        this.processorBrand = processorBrand;
+    public void setRandomAccessMemory(RandomAccessMemory randomAccessMemory) {
+        this.randomAccessMemory = randomAccessMemory;
     }
 
-    public String getProcessorSeries() {
-        return processorSeries;
+    public ReadMemory getReadMemory() {
+        return readMemory;
     }
 
-    public void setProcessorSeries(String processorSeries) {
-        this.processorSeries = processorSeries;
-    }
-
-    public int getProcessorCoresAmount() {
-        return processorCoresAmount;
-    }
-
-    public void setProcessorCoresAmount(int processorCoresAmount) {
-        this.processorCoresAmount = processorCoresAmount;
-    }
-
-    public double getProcessorFrequency() {
-        return processorFrequency;
-    }
-
-    public void setProcessorFrequency(double processorFrequency) {
-        this.processorFrequency = processorFrequency;
-    }
-
-    public int getRandomAccessMemoryVolume() {
-        return randomAccessMemoryVolume;
-    }
-
-    public void setRandomAccessMemoryVolume(int randomAccessMemoryVolume) {
-        this.randomAccessMemoryVolume = randomAccessMemoryVolume;
-    }
-
-    public RandomAccessMemoryType getRandomAccessMemoryType() {
-        return randomAccessMemoryType;
-    }
-
-    public void setRandomAccessMemoryType(RandomAccessMemoryType randomAccessMemoryType) {
-        this.randomAccessMemoryType = randomAccessMemoryType;
-    }
-
-    public int getRandomAccessMemoryFrequency() {
-        return randomAccessMemoryFrequency;
-    }
-
-    public void setRandomAccessMemoryFrequency(int randomAccessMemoryFrequency) {
-        this.randomAccessMemoryFrequency = randomAccessMemoryFrequency;
-    }
-
-    public int getReadMemoryVolume() {
-        return readMemoryVolume;
-    }
-
-    public void setReadMemoryVolume(int readMemoryVolume) {
-        this.readMemoryVolume = readMemoryVolume;
-    }
-
-    public ReadMemoryType getReadMemoryType() {
-        return readMemoryType;
-    }
-
-    public void setReadMemoryType(ReadMemoryType readMemoryType) {
-        this.readMemoryType = readMemoryType;
+    public void setReadMemory(ReadMemory readMemory) {
+        this.readMemory = readMemory;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Computer computer = (Computer) o;
-        return year == computer.year && processorCoresAmount == computer.processorCoresAmount && Double.compare(computer.processorFrequency, processorFrequency) == 0 && randomAccessMemoryVolume == computer.randomAccessMemoryVolume && randomAccessMemoryFrequency == computer.randomAccessMemoryFrequency && readMemoryVolume == computer.readMemoryVolume && purpose == computer.purpose && Objects.equals(brand, computer.brand) && Objects.equals(name, computer.name) && Objects.equals(operationSystem, computer.operationSystem) && graphicsUnitType == computer.graphicsUnitType && Objects.equals(graphicsUnitBrand, computer.graphicsUnitBrand) && Objects.equals(graphicsUnitModel, computer.graphicsUnitModel) && Objects.equals(processorBrand, computer.processorBrand) && Objects.equals(processorSeries, computer.processorSeries) && randomAccessMemoryType == computer.randomAccessMemoryType && readMemoryType == computer.readMemoryType;
+        return id == computer.id && year == computer.year && Double.compare(computer.price, price) == 0 && purpose == computer.purpose && Objects.equals(brand, computer.brand) && Objects.equals(name, computer.name) && Objects.equals(operationSystem, computer.operationSystem) && Objects.equals(graphicsUnit, computer.graphicsUnit) && Objects.equals(processor, computer.processor) && Objects.equals(randomAccessMemory, computer.randomAccessMemory) && Objects.equals(readMemory, computer.readMemory);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), purpose, brand, name, year, operationSystem, graphicsUnitType, graphicsUnitBrand, graphicsUnitModel, processorBrand, processorSeries, processorCoresAmount, processorFrequency, randomAccessMemoryVolume, randomAccessMemoryType, randomAccessMemoryFrequency, readMemoryVolume, readMemoryType);
+        return Objects.hash(id, purpose, brand, name, year, operationSystem, price, graphicsUnit, processor, randomAccessMemory, readMemory);
     }
 
     @Override
     public String toString() {
         return "Computer{" +
-                "purpose=" + purpose +
+                "id=" + id +
+                ", purpose=" + purpose +
                 ", brand='" + brand + '\'' +
                 ", name='" + name + '\'' +
                 ", year=" + year +
                 ", operationSystem='" + operationSystem + '\'' +
-                ", graphicsUnitType=" + graphicsUnitType +
-                ", graphicsUnitBrand='" + graphicsUnitBrand + '\'' +
-                ", graphicsUnitModel='" + graphicsUnitModel + '\'' +
-                ", processorBrand='" + processorBrand + '\'' +
-                ", processorSeries='" + processorSeries + '\'' +
-                ", processorCoresAmount=" + processorCoresAmount +
-                ", processorFrequency=" + processorFrequency +
-                ", randomAccessMemoryVolume=" + randomAccessMemoryVolume +
-                ", randomAccessMemoryType=" + randomAccessMemoryType +
-                ", randomAccessMemoryFrequency=" + randomAccessMemoryFrequency +
-                ", readMemoryVolume=" + readMemoryVolume +
-                ", readMemoryType=" + readMemoryType +
-                "} " + super.toString();
+                ", price=" + price +
+                ", graphicsUnit=" + graphicsUnit +
+                ", processor=" + processor +
+                ", randomAccessMemory=" + randomAccessMemory +
+                ", readMemory=" + readMemory +
+                '}';
     }
 }

@@ -1,13 +1,14 @@
 package com.bsac.CompStore.model.business;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Processor extends Product {
+public class Processor {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @Column
     private String brand;
@@ -20,6 +21,17 @@ public class Processor extends Product {
 
     @Column
     private double frequency;
+
+    @Column
+    private double price;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getBrand() {
         return brand;
@@ -53,26 +65,36 @@ public class Processor extends Product {
         this.frequency = frequency;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Processor processor = (Processor) o;
-        return coresAmount == processor.coresAmount && Double.compare(processor.frequency, frequency) == 0 && Objects.equals(brand, processor.brand) && Objects.equals(series, processor.series);
+        return id == processor.id && coresAmount == processor.coresAmount && Double.compare(processor.frequency, frequency) == 0 && Double.compare(processor.price, price) == 0 && Objects.equals(brand, processor.brand) && Objects.equals(series, processor.series);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, series, coresAmount, frequency);
+        return Objects.hash(id, brand, series, coresAmount, frequency, price);
     }
 
     @Override
     public String toString() {
         return "Processor{" +
-                "brand='" + brand + '\'' +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
                 ", series='" + series + '\'' +
                 ", coresAmount=" + coresAmount +
                 ", frequency=" + frequency +
-                "} " + super.toString();
+                ", price=" + price +
+                '}';
     }
 }

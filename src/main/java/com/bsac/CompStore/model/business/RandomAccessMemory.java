@@ -4,7 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class RandomAccessMemory extends Product {
+public class RandomAccessMemory {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @Column
     private int volume;
@@ -14,6 +18,17 @@ public class RandomAccessMemory extends Product {
 
     @Column
     private int frequency;
+
+    @Column
+    private double price;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getVolume() {
         return volume;
@@ -39,26 +54,35 @@ public class RandomAccessMemory extends Product {
         this.frequency = frequency;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         RandomAccessMemory that = (RandomAccessMemory) o;
-        return volume == that.volume && frequency == that.frequency && type == that.type;
+        return id == that.id && volume == that.volume && frequency == that.frequency && Double.compare(that.price, price) == 0 && type == that.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), volume, type, frequency);
+        return Objects.hash(id, volume, type, frequency, price);
     }
 
     @Override
     public String toString() {
         return "RandomAccessMemory{" +
-                "volume=" + volume +
+                "id=" + id +
+                ", volume=" + volume +
                 ", type=" + type +
                 ", frequency=" + frequency +
-                "} " + super.toString();
+                ", price=" + price +
+                '}';
     }
 }
