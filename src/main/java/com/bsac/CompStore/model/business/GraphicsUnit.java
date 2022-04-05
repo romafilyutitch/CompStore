@@ -1,6 +1,9 @@
 package com.bsac.CompStore.model.business;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Objects;
 
 @Entity
@@ -11,15 +14,20 @@ public class GraphicsUnit {
     private int id;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Graphics unit type is mandatory")
     private GraphicsUnitType type;
 
     @Column
+    @NotBlank(message = "Graphics unit brand is mandatory")
     private String brand;
 
     @Column
+    @NotBlank(message = "Graphics unit model is mandatory")
     private String model;
 
     @Column
+    @NotNull(message = "Graphics unit price is mandatory")
+    @Positive(message = "Graphics unit price must be positive")
     private double price;
 
     public int getId() {

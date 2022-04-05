@@ -1,11 +1,11 @@
 package com.bsac.CompStore.controller;
 
+import com.bsac.CompStore.exception.ResourceNotFoundException;
 import com.bsac.CompStore.model.business.Computer;
 import com.bsac.CompStore.repository.ComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,15 +13,26 @@ import java.util.List;
 @RequestMapping("/computers")
 public class ComputerController {
 
-    private ComputerRepository computerRepository;
+    private final ComputerRepository graphicsUnitService;
 
     @Autowired
     public ComputerController(ComputerRepository computerRepository) {
-        this.computerRepository = computerRepository;
+        this.graphicsUnitService = computerRepository;
     }
 
     @GetMapping
     public List<Computer> findAll() {
-        return computerRepository.findAll();
+        return graphicsUnitService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    private Computer findById(@PathVariable int id) {
+        return graphicsUnitService.findById(id).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    private void deleteById(@PathVariable int id) {
+        graphicsUnitService.deleteById(id);
     }
 }
