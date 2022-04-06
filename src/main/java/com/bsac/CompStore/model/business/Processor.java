@@ -1,6 +1,8 @@
 package com.bsac.CompStore.model.business;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.util.Objects;
 
 @Entity
@@ -11,18 +13,23 @@ public class Processor {
     private int id;
 
     @Column
+    @NotBlank(message = "Processor brand is mandatory")
     private String brand;
 
     @Column
+    @NotBlank(message = "Processor series is mandatory")
     private String series;
 
     @Column
+    @Positive(message = "Processor cores amount must be positive")
     private int coresAmount;
 
     @Column
+    @Positive(message = "Processor frequency must be positive")
     private double frequency;
 
     @Column
+    @Positive(message = "Processor price must be positive")
     private double price;
 
     public int getId() {

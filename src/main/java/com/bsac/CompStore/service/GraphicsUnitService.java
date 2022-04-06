@@ -1,4 +1,4 @@
-package com.bsac.CompStore;
+package com.bsac.CompStore.service;
 
 import com.bsac.CompStore.exception.ResourceNotFoundException;
 import com.bsac.CompStore.model.business.GraphicsUnit;

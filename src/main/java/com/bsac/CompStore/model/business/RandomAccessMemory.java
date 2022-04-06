@@ -1,6 +1,7 @@
 package com.bsac.CompStore.model.business;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.util.Objects;
 
 @Entity
@@ -11,15 +12,18 @@ public class RandomAccessMemory {
     private int id;
 
     @Column
+    @Positive(message = "Random access memory volume must be positive")
     private int volume;
 
     @Enumerated(EnumType.STRING)
     private RandomAccessMemoryType type;
 
     @Column
+    @Positive(message = "Random access memory frequency must be positive")
     private int frequency;
 
     @Column
+    @Positive(message = "Random access memory price must be positive")
     private double price;
 
     public int getId() {

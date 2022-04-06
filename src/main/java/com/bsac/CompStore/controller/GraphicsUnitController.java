@@ -1,9 +1,7 @@
 package com.bsac.CompStore.controller;
 
-import com.bsac.CompStore.GraphicsUnitService;
-import com.bsac.CompStore.exception.ResourceNotFoundException;
+import com.bsac.CompStore.service.GraphicsUnitService;
 import com.bsac.CompStore.model.business.GraphicsUnit;
-import com.bsac.CompStore.repository.GraphicsUnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +16,8 @@ public class GraphicsUnitController {
     private final GraphicsUnitService graphicsUnitService;
 
     @Autowired
-    public GraphicsUnitController(GraphicsUnitService graphicsUnitRepository) {
-        this.graphicsUnitService = graphicsUnitRepository;
+    public GraphicsUnitController(GraphicsUnitService graphicsUnitService) {
+        this.graphicsUnitService = graphicsUnitService;
     }
 
     @GetMapping
@@ -44,7 +42,7 @@ public class GraphicsUnitController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable int id) {
+    public void delete(@PathVariable int id) {
         graphicsUnitService.delete(id);
     }
 
