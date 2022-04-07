@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RandomAccessMemoryService {
@@ -23,7 +24,11 @@ public class RandomAccessMemoryService {
     }
 
     public RandomAccessMemory findById(int id) {
-        return randomAccessMemoryRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<RandomAccessMemory> optionalRandomAccessMemory = randomAccessMemoryRepository.findById(id);
+        if(optionalRandomAccessMemory.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Random access memory wasn't found by id %d", id));
+        }
+        return optionalRandomAccessMemory.get();
     }
 
     public void delete(int id) {
@@ -35,7 +40,11 @@ public class RandomAccessMemoryService {
     }
 
     public RandomAccessMemory update(int id, RandomAccessMemory randomAccessMemory) {
-        RandomAccessMemory savedRandomAccessMemory = randomAccessMemoryRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<RandomAccessMemory> optionalRandomAccessMemory = randomAccessMemoryRepository.findById(id);
+        if(optionalRandomAccessMemory.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Random access memory wasn't found by id %d", id));
+        }
+        RandomAccessMemory savedRandomAccessMemory = optionalRandomAccessMemory.get();
         savedRandomAccessMemory.setFrequency(randomAccessMemory.getFrequency());
         savedRandomAccessMemory.setPrice(randomAccessMemory.getPrice());
         savedRandomAccessMemory.setVolume(randomAccessMemory.getVolume());

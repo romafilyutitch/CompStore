@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProcessorService {
@@ -23,7 +24,11 @@ public class ProcessorService {
     }
 
     public Processor findById(int id) {
-        return processorRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<Processor> optionalProcessor = processorRepository.findById(id);
+        if (optionalProcessor.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Processor was not found by id %d",id));
+        }
+        return optionalProcessor.get();
     }
 
     public void delete(int id) {
@@ -35,7 +40,11 @@ public class ProcessorService {
     }
 
     public Processor update(int id, Processor processor) {
-        Processor savedProcessor = processorRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<Processor> optionalProcessor = processorRepository.findById(id);
+        if (optionalProcessor.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Resource was not found by id %d", id));
+        }
+        Processor savedProcessor = optionalProcessor.get();
         savedProcessor.setBrand(processor.getBrand());
         savedProcessor.setPrice(processor.getPrice());
         savedProcessor.setCoresAmount(processor.getCoresAmount());

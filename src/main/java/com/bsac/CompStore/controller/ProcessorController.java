@@ -1,12 +1,17 @@
 package com.bsac.CompStore.controller;
 
+import com.bsac.CompStore.exception.ErrorDetails;
+import com.bsac.CompStore.exception.ResourceNotFoundException;
 import com.bsac.CompStore.model.business.Processor;
 import com.bsac.CompStore.service.ProcessorService;
+import jdk.jfr.Experimental;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -44,5 +49,10 @@ public class ProcessorController {
     @PutMapping("/{id}")
     public Processor update(@PathVariable int id, @RequestBody Processor processor) {
         return processorService.update(id, processor);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handleError(ResourceNotFoundException exception) {
+        return new ResponseEntity<ErrorDetails>(new ErrorDetails(LocalDateTime.now(), exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReadMemoryService {
@@ -23,7 +24,11 @@ public class ReadMemoryService {
     }
 
     public ReadMemory findAll(int id) {
-        return readMemoryRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<ReadMemory> optionalReadMemory = readMemoryRepository.findById(id);
+        if (optionalReadMemory.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Processor wasn't found by id %d", id));
+        }
+        return optionalReadMemory.get();
     }
 
     public void delete(int id) {
@@ -35,7 +40,11 @@ public class ReadMemoryService {
     }
 
     public ReadMemory update(int id, ReadMemory readMemory) {
-        ReadMemory savedReadMemory = readMemoryRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<ReadMemory> optionalReadMemory = readMemoryRepository.findById(id);
+        if (optionalReadMemory.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Processor wasn't found by id %d", id));
+        }
+        ReadMemory savedReadMemory = optionalReadMemory.get();
         savedReadMemory.setPrice(readMemory.getPrice());
         savedReadMemory.setType(readMemory.getType());
         savedReadMemory.setVolume(readMemory.getVolume());

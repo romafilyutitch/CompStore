@@ -24,7 +24,11 @@ public class GraphicsUnitService {
     }
 
     public GraphicsUnit findById(int id) {
-        return graphicsUnitRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<GraphicsUnit> optionalGraphicsUnit = graphicsUnitRepository.findById(id);
+        if (optionalGraphicsUnit.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Graphics unit wasn't found by id %d", id));
+        }
+        return optionalGraphicsUnit.get();
     }
 
     public GraphicsUnit save(GraphicsUnit graphicsUnit) {
@@ -32,8 +36,11 @@ public class GraphicsUnitService {
     }
 
     public GraphicsUnit update(int id, GraphicsUnit graphicsUnit) {
-        final Optional<GraphicsUnit> optionalGraphicsUnit = graphicsUnitRepository.findById(id);
-        final GraphicsUnit savedGraphicsUnit = optionalGraphicsUnit.orElseThrow(ResourceNotFoundException::new);
+        Optional<GraphicsUnit> optionalSavedGraphicsUnit = graphicsUnitRepository.findById(id);
+        if (optionalSavedGraphicsUnit.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("Graphics unit wasn't found by id %d",id));
+        }
+        final GraphicsUnit savedGraphicsUnit = optionalSavedGraphicsUnit.get();
         savedGraphicsUnit.setBrand(graphicsUnit.getBrand());
         savedGraphicsUnit.setModel(graphicsUnit.getModel());
         savedGraphicsUnit.setType(graphicsUnit.getType());

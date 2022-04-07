@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -24,7 +25,11 @@ public class UserService {
     }
 
     public User findById(int id) {
-        return userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("User wasn't found by id %d", id));
+        }
+        return optionalUser.get();
     }
 
     public void delete(int id) {
@@ -32,12 +37,15 @@ public class UserService {
     }
 
     public User save(User user) {
-        user.setUserRole(Role.CUSTOMER);
         return userRepository.save(user);
     }
 
     public User update(int id, User user) {
-        User savedUser = userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            throw new ResourceNotFoundException(String.format("User wasn't found by id %d", id));
+        }
+        User savedUser = optionalUser.get();
         savedUser.setUsername(user.getUsername());
         savedUser.setEmail(user.getEmail());
         savedUser.setPassword(user.getPassword());
