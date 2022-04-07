@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +26,7 @@ public class User {
 
     @Column
     @NotBlank(message = "User password is mandatory")
-    @Min(value = 5, message = "User password must be bigger than 5 characters length")
+    @Size(min = 5, message = "User password must be bigger than 5 characters length")
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -32,7 +34,7 @@ public class User {
 
     @OneToMany
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private List<UserOrder> orders;
+    private List<UserOrder> orders = new ArrayList<>();
 
     public int getId() {
         return id;
