@@ -26,7 +26,7 @@ public class ReadMemoryController {
 
     @GetMapping
     public List<ReadMemory> findAll() {
-        return readMemoryService.findById();
+        return readMemoryService.findAll();
     }
 
     @GetMapping("/{id}")

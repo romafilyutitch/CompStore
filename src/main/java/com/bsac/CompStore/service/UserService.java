@@ -42,7 +42,7 @@ public class UserService {
 
     public User update(int id, User user) {
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
+        if (optionalUser.isEmpty()) {
             throw new ResourceNotFoundException(String.format("User wasn't found by id %d", id));
         }
         User savedUser = optionalUser.get();

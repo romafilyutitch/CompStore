@@ -60,7 +60,7 @@ public class ReadMemoryControllerTest {
     public void findAll_shouldReturnAllRecords() throws Exception {
         List<ReadMemory> readMemoryList = Arrays.asList(readMemory1, readMemory2, readMemory3);
 
-        when(readMemoryService.findById()).thenReturn(readMemoryList);
+        when(readMemoryService.findAll()).thenReturn(readMemoryList);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/readMemories")
                         .contentType(MediaType.APPLICATION_JSON))

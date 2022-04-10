@@ -19,7 +19,7 @@ public class ReadMemoryService {
         this.readMemoryRepository = readMemoryRepository;
     }
 
-    public List<ReadMemory> findById() {
+    public List<ReadMemory> findAll() {
         return readMemoryRepository.findAll();
     }
 
