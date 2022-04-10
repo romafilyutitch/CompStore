@@ -19,11 +19,11 @@ public class ReadMemoryService {
         this.readMemoryRepository = readMemoryRepository;
     }
 
-    public List<ReadMemory> findAll() {
+    public List<ReadMemory> findById() {
         return readMemoryRepository.findAll();
     }
 
-    public ReadMemory findAll(int id) {
+    public ReadMemory findById(int id) {
         Optional<ReadMemory> optionalReadMemory = readMemoryRepository.findById(id);
         if (optionalReadMemory.isEmpty()) {
             throw new ResourceNotFoundException(String.format("Processor wasn't found by id %d", id));

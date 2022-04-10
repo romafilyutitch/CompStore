@@ -26,12 +26,12 @@ public class ReadMemoryController {
 
     @GetMapping
     public List<ReadMemory> findAll() {
-        return readMemoryService.findAll();
+        return readMemoryService.findById();
     }
 
     @GetMapping("/{id}")
     public ReadMemory findById(@PathVariable int id) {
-        return readMemoryService.findAll(id);
+        return readMemoryService.findById(id);
     }
 
     @DeleteMapping("/{id}")
