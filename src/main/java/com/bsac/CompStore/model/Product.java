@@ -1,4 +1,4 @@
-package com.bsac.CompStore.model.business;
+package com.bsac.CompStore.model;
 
 import javax.persistence.*;
 import java.util.Objects;

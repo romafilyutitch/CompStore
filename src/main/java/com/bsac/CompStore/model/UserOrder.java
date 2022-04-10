@@ -1,7 +1,5 @@
 package com.bsac.CompStore.model;
 
-import com.bsac.CompStore.model.business.Computer;
-
 import javax.persistence.*;
 import java.util.Objects;
 

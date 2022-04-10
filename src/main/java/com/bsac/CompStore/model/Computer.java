@@ -1,6 +1,7 @@
-package com.bsac.CompStore.model.business;
+package com.bsac.CompStore.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -43,6 +44,10 @@ public class Computer {
     @OneToOne
     @JoinColumn(name = "read_memory_id", referencedColumnName = "id")
     private ReadMemory readMemory;
+
+    @OneToMany
+    @JoinColumn(name = "computer_id", referencedColumnName = "id")
+    private List<Review> reviews;
 
     public int getId() {
         return id;
@@ -132,17 +137,25 @@ public class Computer {
         this.readMemory = readMemory;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Computer computer = (Computer) o;
-        return id == computer.id && year == computer.year && Double.compare(computer.price, price) == 0 && purpose == computer.purpose && Objects.equals(brand, computer.brand) && Objects.equals(name, computer.name) && Objects.equals(operationSystem, computer.operationSystem) && Objects.equals(graphicsUnit, computer.graphicsUnit) && Objects.equals(processor, computer.processor) && Objects.equals(randomAccessMemory, computer.randomAccessMemory) && Objects.equals(readMemory, computer.readMemory);
+        return id == computer.id && year == computer.year && Double.compare(computer.price, price) == 0 && purpose == computer.purpose && Objects.equals(brand, computer.brand) && Objects.equals(name, computer.name) && Objects.equals(operationSystem, computer.operationSystem) && Objects.equals(graphicsUnit, computer.graphicsUnit) && Objects.equals(processor, computer.processor) && Objects.equals(randomAccessMemory, computer.randomAccessMemory) && Objects.equals(readMemory, computer.readMemory) && Objects.equals(reviews, computer.reviews);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, purpose, brand, name, year, operationSystem, price, graphicsUnit, processor, randomAccessMemory, readMemory);
+        return Objects.hash(id, purpose, brand, name, year, operationSystem, price, graphicsUnit, processor, randomAccessMemory, readMemory, reviews);
     }
 
     @Override
@@ -159,6 +172,7 @@ public class Computer {
                 ", processor=" + processor +
                 ", randomAccessMemory=" + randomAccessMemory +
                 ", readMemory=" + readMemory +
+                ", reviews=" + reviews +
                 '}';
     }
 }

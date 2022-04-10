@@ -2,9 +2,8 @@ package com.bsac.CompStore.controller;
 
 import com.bsac.CompStore.exception.ErrorDetails;
 import com.bsac.CompStore.exception.ResourceNotFoundException;
-import com.bsac.CompStore.model.business.RandomAccessMemory;
+import com.bsac.CompStore.model.RandomAccessMemory;
 import com.bsac.CompStore.service.RandomAccessMemoryService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

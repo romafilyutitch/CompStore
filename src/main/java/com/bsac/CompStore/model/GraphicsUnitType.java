@@ -1,4 +1,4 @@
-package com.bsac.CompStore.model.business;
+package com.bsac.CompStore.model;
 
 public enum GraphicsUnitType {
     EMBEDDED, DISCRETE

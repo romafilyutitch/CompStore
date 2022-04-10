@@ -1,7 +1,7 @@
 package com.bsac.CompStore.service;
 
 import com.bsac.CompStore.exception.ResourceNotFoundException;
-import com.bsac.CompStore.model.business.ReadMemory;
+import com.bsac.CompStore.model.ReadMemory;
 import com.bsac.CompStore.repository.ReadMemoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

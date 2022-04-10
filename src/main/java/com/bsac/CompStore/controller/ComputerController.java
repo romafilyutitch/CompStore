@@ -2,8 +2,7 @@ package com.bsac.CompStore.controller;
 
 import com.bsac.CompStore.exception.ErrorDetails;
 import com.bsac.CompStore.exception.ResourceNotFoundException;
-import com.bsac.CompStore.model.business.Computer;
-import com.bsac.CompStore.repository.ComputerRepository;
+import com.bsac.CompStore.model.Computer;
 import com.bsac.CompStore.service.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

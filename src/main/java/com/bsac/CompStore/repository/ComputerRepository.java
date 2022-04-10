@@ -1,6 +1,6 @@
 package com.bsac.CompStore.repository;
 
-import com.bsac.CompStore.model.business.Computer;
+import com.bsac.CompStore.model.Computer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

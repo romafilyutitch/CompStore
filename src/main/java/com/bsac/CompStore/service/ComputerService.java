@@ -1,7 +1,7 @@
 package com.bsac.CompStore.service;
 
 import com.bsac.CompStore.exception.ResourceNotFoundException;
-import com.bsac.CompStore.model.business.Computer;
+import com.bsac.CompStore.model.Computer;
 import com.bsac.CompStore.repository.ComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
