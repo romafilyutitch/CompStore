@@ -57,4 +57,8 @@ public class ComputerService {
         savedComputer.setYear(computer.getYear());
         return savedComputer;
     }
+
+    public List<Computer> findByName(String name) {
+        return computerRepository.findByNameContains(name);
+    }
 }

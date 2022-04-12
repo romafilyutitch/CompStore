@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,8 +25,15 @@ public class ComputerController {
     }
 
     @GetMapping
-    public List<Computer> findAll() {
-        return computerService.findAll();
+    public List<Computer> findAll(@RequestParam(required = false) String name) {
+        List<Computer> computers;
+        System.out.println(name);
+        if (name != null) {
+            computers = computerService.findByName(name);
+        } else {
+            computers = computerService.findAll();
+        }
+        return computers;
     }
 
     @GetMapping("/{id}")
@@ -38,6 +46,7 @@ public class ComputerController {
     public void deleteById(@PathVariable int id) {
         computerService.delete(id);
     }
+
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleError(ResourceNotFoundException exception) {
