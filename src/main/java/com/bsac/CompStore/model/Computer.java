@@ -1,6 +1,9 @@
 package com.bsac.CompStore.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,40 +15,46 @@ public class Computer {
     private int id;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Computer purpose is mandatory")
     private ComputerPurpose purpose;
 
     @Column
+    @NotBlank(message = "Computer brand is mandatory")
     private String brand;
 
     @Column
+    @NotBlank(message = "Computer name is mandatory")
     private String name;
 
     @Column
+    @Positive(message = "Computer year must be positive")
     private int year;
 
     @Column
+    @NotBlank(message = "Computer operation system is mandatory")
     private String operationSystem;
 
     @Column
+    @Positive(message = "Computer price must be positive")
     private double price;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "graphics_unit_id", referencedColumnName = "id")
     private GraphicsUnit graphicsUnit;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "processor_id", referencedColumnName = "id")
     private Processor processor;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "random_access_memory_id", referencedColumnName = "id")
     private RandomAccessMemory randomAccessMemory;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "read_memory_id", referencedColumnName = "id")
     private ReadMemory readMemory;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "computer_id", referencedColumnName = "id")
     private List<Review> reviews;
 

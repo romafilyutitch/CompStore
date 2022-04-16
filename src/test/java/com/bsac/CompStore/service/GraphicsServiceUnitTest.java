@@ -33,16 +33,13 @@ public class GraphicsServiceUnitTest {
     @BeforeEach
     public void setUp() {
         graphicsUnit1.setId(1);
-        graphicsUnit1.setPrice(1000);
         graphicsUnit1.setType(GraphicsUnitType.EMBEDDED);
         graphicsUnit1.setModel("NVIDIA GFORCE 3060");
         graphicsUnit1.setBrand("NVIDIA");
 
         graphicsUnit2.setId(2);
-        graphicsUnit2.setPrice(2000);
         graphicsUnit2.setType(GraphicsUnitType.DISCRETE);
         graphicsUnit2.setModel("NVIDIA GFORCE 3070");
-        graphicsUnit2.setPrice(5000);
     }
 
     @Test
@@ -82,12 +79,12 @@ public class GraphicsServiceUnitTest {
 
     @Test
     public void update_shouldUpdateRecord() {
-        graphicsUnit1.setPrice(1);
+        graphicsUnit1.setModel("Intel");
         when(graphicsUnitRepository.findById(graphicsUnit1.getId())).thenReturn(Optional.of(graphicsUnit1));
 
         GraphicsUnit updatedRecord = graphicsUnitService.update(graphicsUnit1.getId(), graphicsUnit1);
 
-        assertEquals(1, updatedRecord.getPrice());
+        assertEquals(1, updatedRecord.getModel());
     }
 
 }

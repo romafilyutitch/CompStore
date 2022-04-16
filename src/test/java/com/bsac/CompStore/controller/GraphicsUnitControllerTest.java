@@ -43,19 +43,16 @@ public class GraphicsUnitControllerTest {
     public void setUp() {
         graphicsUnit1.setId(1);
         graphicsUnit1.setBrand("NVIDIA");
-        graphicsUnit1.setPrice(2000.0);
         graphicsUnit1.setModel("NVIDIA GFORCE 1020");
         graphicsUnit1.setType(GraphicsUnitType.DISCRETE);
 
         graphicsUnit2.setId(2);
         graphicsUnit2.setBrand("NVIDIA");
-        graphicsUnit2.setPrice(3000.0);
         graphicsUnit2.setModel("NVIDIA GFORCE 2020");
         graphicsUnit2.setType(GraphicsUnitType.DISCRETE);
 
         graphicsUnit3.setId(3);
         graphicsUnit3.setBrand("NVIDIA");
-        graphicsUnit3.setPrice(2500.0);
         graphicsUnit3.setModel("NVIDIA GFORCE 3020");
         graphicsUnit3.setType(GraphicsUnitType.DISCRETE);
     }
@@ -110,7 +107,7 @@ public class GraphicsUnitControllerTest {
 
     @Test
     public void update_shouldUpdateRecord() throws Exception {
-        graphicsUnit1.setPrice(123);
+        graphicsUnit1.setBrand("Intel");
         when(graphicsUnitService.update(graphicsUnit1.getId(), graphicsUnit1)).thenReturn(graphicsUnit1);
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/graphicsUnits/ " + graphicsUnit1.getId())
@@ -122,7 +119,7 @@ public class GraphicsUnitControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", notNullValue()))
                 .andExpect(jsonPath("$.id", is(graphicsUnit1.getId())))
-                .andExpect(jsonPath("$.price", is(graphicsUnit1.getPrice())));
+                .andExpect(jsonPath("$.brand", is(graphicsUnit1.getBrand())));
     }
 
     @Test

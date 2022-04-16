@@ -42,19 +42,16 @@ public class RandomAccessMemoryControllerTest {
     public void setUp() {
         randomAccessMemory1.setId(1);
         randomAccessMemory1.setFrequency(144);
-        randomAccessMemory1.setPrice(1000);
         randomAccessMemory1.setType(RandomAccessMemoryType.DDR1);
         randomAccessMemory1.setVolume(4);
 
         randomAccessMemory2.setId(2);
         randomAccessMemory2.setFrequency(244);
-        randomAccessMemory2.setPrice(2000);
         randomAccessMemory2.setType(RandomAccessMemoryType.DDR2);
         randomAccessMemory2.setVolume(8);
 
         randomAccessMemory3.setId(3);
         randomAccessMemory3.setFrequency(144);
-        randomAccessMemory3.setPrice(2000);
         randomAccessMemory3.setType(RandomAccessMemoryType.DDR4);
         randomAccessMemory3.setVolume(16);
     }

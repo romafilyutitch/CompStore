@@ -42,14 +42,12 @@ public class ProcessorControllerTest {
     public void setUp() {
         processor1.setId(1);
         processor1.setBrand("Intel");
-        processor1.setPrice(2000);
         processor1.setFrequency(2.1);
         processor1.setSeries("Intel Core");
         processor1.setCoresAmount(2);
 
         processor2.setId(2);
         processor2.setBrand("Intel");
-        processor1.setPrice(3000);
         processor2.setFrequency(2.0);
         processor2.setSeries("Intel Core i5");
         processor2.setCoresAmount(4);
@@ -58,7 +56,6 @@ public class ProcessorControllerTest {
         processor3.setBrand("AMD");
         processor3.setSeries("AMD Risen");
         processor3.setFrequency(2.6);
-        processor3.setPrice(3000);
         processor3.setCoresAmount(8);
     }
 
@@ -122,7 +119,7 @@ public class ProcessorControllerTest {
 
     @Test
     public void update_shouldUpdateProcessor() throws Exception {
-        processor1.setPrice(10000.0);
+        processor1.setCoresAmount(4);
         Mockito.when(processorService.update(processor1.getId(), processor1)).thenReturn(processor1);
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/processors/" + processor1.getId())
@@ -135,7 +132,7 @@ public class ProcessorControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", notNullValue()))
                 .andExpect(jsonPath("$.id", is(processor1.getId())))
-                .andExpect(jsonPath("$.price", is(10000.0)));
+                .andExpect(jsonPath("$.coresAmount", is(4)));
     }
 
 

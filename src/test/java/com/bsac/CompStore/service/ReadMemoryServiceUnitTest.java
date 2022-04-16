@@ -32,12 +32,10 @@ public class ReadMemoryServiceUnitTest {
     @BeforeEach
     public void setUp() {
         readMemory1.setId(1);
-        readMemory1.setPrice(1000);
         readMemory1.setType(ReadMemoryType.SSD);
         readMemory1.setVolume(500);
 
         readMemory2.setId(2);
-        readMemory2.setPrice(2000);
         readMemory2.setType(ReadMemoryType.SSD);
         readMemory2.setVolume(1000);
     }
@@ -79,12 +77,12 @@ public class ReadMemoryServiceUnitTest {
 
     @Test
     public void update_shouldReturnUpdatedRecord() {
-        readMemory1.setPrice(200);
+        readMemory1.setVolume(200);
         when(readMemoryRepository.findById(readMemory1.getId())).thenReturn(Optional.of(readMemory1));
 
         ReadMemory updatedRecord = readMemoryService.update(readMemory1.getId(), readMemory1);
 
         assertEquals(readMemory1, updatedRecord);
-        assertEquals(200, readMemory1.getPrice());
+        assertEquals(200, readMemory1.getVolume());
     }
 }

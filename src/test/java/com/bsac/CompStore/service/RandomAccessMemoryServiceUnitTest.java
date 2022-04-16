@@ -33,7 +33,6 @@ public class RandomAccessMemoryServiceUnitTest {
     public void setUp() {
         randomAccessMemory1.setId(1);
         randomAccessMemory1.setVolume(4);
-        randomAccessMemory1.setPrice(1000);
         randomAccessMemory1.setType(RandomAccessMemoryType.DDR4);
         randomAccessMemory1.setFrequency(144);
 
@@ -41,7 +40,6 @@ public class RandomAccessMemoryServiceUnitTest {
         randomAccessMemory2.setVolume(8);
         randomAccessMemory2.setType(RandomAccessMemoryType.DDR4);
         randomAccessMemory1.setFrequency(200);
-        randomAccessMemory1.setPrice(3000);
     }
 
     @Test

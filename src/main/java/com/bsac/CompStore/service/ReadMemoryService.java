@@ -45,7 +45,6 @@ public class ReadMemoryService {
             throw new ResourceNotFoundException(String.format("Processor wasn't found by id %d", id));
         }
         ReadMemory savedReadMemory = optionalReadMemory.get();
-        savedReadMemory.setPrice(readMemory.getPrice());
         savedReadMemory.setType(readMemory.getType());
         savedReadMemory.setVolume(readMemory.getVolume());
         return savedReadMemory;

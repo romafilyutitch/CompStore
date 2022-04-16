@@ -32,14 +32,12 @@ public class ProcessorServiceUnitTest {
     @BeforeEach
     public void setUp() {
         processor1.setId(1);
-        processor1.setPrice(1000);
         processor1.setSeries("Intel Core i5");
         processor1.setBrand("Intel");
         processor1.setCoresAmount(4);
         processor1.setFrequency(2.1);
 
         processor2.setId(2);
-        processor2.setPrice(2000);
         processor2.setSeries("Intel Core i7");
         processor2.setBrand("Intel");
         processor2.setCoresAmount(8);

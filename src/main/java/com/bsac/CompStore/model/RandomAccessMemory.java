@@ -22,10 +22,6 @@ public class RandomAccessMemory {
     @Positive(message = "Random access memory frequency must be positive")
     private int frequency;
 
-    @Column
-    @Positive(message = "Random access memory price must be positive")
-    private double price;
-
     public int getId() {
         return id;
     }
@@ -58,25 +54,17 @@ public class RandomAccessMemory {
         this.frequency = frequency;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RandomAccessMemory that = (RandomAccessMemory) o;
-        return id == that.id && volume == that.volume && frequency == that.frequency && Double.compare(that.price, price) == 0 && type == that.type;
+        return id == that.id && volume == that.volume && frequency == that.frequency && type == that.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, volume, type, frequency, price);
+        return Objects.hash(id, volume, type, frequency);
     }
 
     @Override
@@ -86,7 +74,6 @@ public class RandomAccessMemory {
                 ", volume=" + volume +
                 ", type=" + type +
                 ", frequency=" + frequency +
-                ", price=" + price +
                 '}';
     }
 }

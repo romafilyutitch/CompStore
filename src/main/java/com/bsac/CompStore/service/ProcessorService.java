@@ -46,7 +46,6 @@ public class ProcessorService {
         }
         Processor savedProcessor = optionalProcessor.get();
         savedProcessor.setBrand(processor.getBrand());
-        savedProcessor.setPrice(processor.getPrice());
         savedProcessor.setCoresAmount(processor.getCoresAmount());
         savedProcessor.setSeries(processor.getSeries());
         savedProcessor.setFrequency(processor.getFrequency());

@@ -25,11 +25,6 @@ public class GraphicsUnit {
     @NotBlank(message = "Graphics unit model is mandatory")
     private String model;
 
-    @Column
-    @NotNull(message = "Graphics unit price is mandatory")
-    @Positive(message = "Graphics unit price must be positive")
-    private double price;
-
     public int getId() {
         return id;
     }
@@ -62,35 +57,16 @@ public class GraphicsUnit {
         this.model = model;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GraphicsUnit that = (GraphicsUnit) o;
-        return id == that.id && Double.compare(that.price, price) == 0 && type == that.type && Objects.equals(brand, that.brand) && Objects.equals(model, that.model);
+        return id == that.id && type == that.type && Objects.equals(brand, that.brand) && Objects.equals(model, that.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, brand, model, price);
-    }
-
-    @Override
-    public String toString() {
-        return "GraphicsUnit{" +
-                "id=" + id +
-                ", type=" + type +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", price=" + price +
-                '}';
+        return Objects.hash(id, type, brand, model);
     }
 }

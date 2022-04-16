@@ -41,17 +41,14 @@ public class ReadMemoryControllerTest {
     @BeforeEach
     private void setUp() {
         readMemory1.setId(1);
-        readMemory1.setPrice(1000);
         readMemory1.setType(ReadMemoryType.HDD);
         readMemory1.setVolume(500);
 
         readMemory2.setId(2);
-        readMemory2.setPrice(2000);
         readMemory2.setType(ReadMemoryType.SSD);
         readMemory2.setVolume(1000);
 
         readMemory3.setId(3);
-        readMemory3.setPrice(3000);
         readMemory3.setType(ReadMemoryType.SSD);
         readMemory3.setVolume(500);
     }
@@ -66,7 +63,7 @@ public class ReadMemoryControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[1].price", is(readMemory2.getPrice())));
+                .andExpect(jsonPath("$[1].id", is(readMemory2.getId())));
     }
 
     @Test
@@ -106,7 +103,7 @@ public class ReadMemoryControllerTest {
 
     @Test
     public void update_shouldUpdateRecord() throws Exception {
-        readMemory1.setPrice(1);
+        readMemory1.setVolume(1);
         when(readMemoryService.update(readMemory1.getId(), readMemory1)).thenReturn(readMemory1);
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/readMemories/" + readMemory1.getId())
@@ -118,7 +115,7 @@ public class ReadMemoryControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", notNullValue()))
                 .andExpect(jsonPath("$.id", is(readMemory1.getId())))
-                .andExpect(jsonPath("$.price", is(readMemory1.getPrice())));
+                .andExpect(jsonPath("$.volume", is(readMemory1.getVolume())));
     }
 
     @Test

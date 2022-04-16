@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,11 @@ public class ComputerController {
         computerService.delete(id);
     }
 
+    @PostMapping
+    public Computer save(@Valid @RequestBody Computer computer) {
+        System.out.println(computer);
+        return computerService.save(computer);
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleError(ResourceNotFoundException exception) {

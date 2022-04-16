@@ -46,7 +46,6 @@ public class RandomAccessMemoryService {
         }
         RandomAccessMemory savedRandomAccessMemory = optionalRandomAccessMemory.get();
         savedRandomAccessMemory.setFrequency(randomAccessMemory.getFrequency());
-        savedRandomAccessMemory.setPrice(randomAccessMemory.getPrice());
         savedRandomAccessMemory.setVolume(randomAccessMemory.getVolume());
         savedRandomAccessMemory.setType(randomAccessMemory.getType());
         return savedRandomAccessMemory;

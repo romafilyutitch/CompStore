@@ -43,7 +43,6 @@ public class GraphicsUnitService {
         savedGraphicsUnit.setBrand(graphicsUnit.getBrand());
         savedGraphicsUnit.setModel(graphicsUnit.getModel());
         savedGraphicsUnit.setType(graphicsUnit.getType());
-        savedGraphicsUnit.setPrice(graphicsUnit.getPrice());
         return savedGraphicsUnit;
     }
 
