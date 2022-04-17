@@ -55,6 +55,7 @@ public class Computer {
     private ReadMemory readMemory;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "computer_id")
     private List<Review> reviews;
 
     public int getId() {
