@@ -55,6 +55,8 @@ public class ComputerService {
         savedComputer.setReadMemory(computer.getReadMemory());
         savedComputer.setRandomAccessMemory(computer.getRandomAccessMemory());
         savedComputer.setYear(computer.getYear());
+        savedComputer.setReviews(computer.getReviews());
+        this.computerRepository.save(savedComputer);
         return savedComputer;
     }
 

@@ -56,6 +56,11 @@ public class ComputerController {
         computerService.delete(id);
     }
 
+    @PostMapping("/{id}")
+    public Computer update(@PathVariable int id, @RequestBody Computer computer) {
+        return this.computerService.update(id, computer);
+    }
+
     @PostMapping
     public Computer save(@Valid @RequestBody Computer computer) {
         System.out.println(computer);
