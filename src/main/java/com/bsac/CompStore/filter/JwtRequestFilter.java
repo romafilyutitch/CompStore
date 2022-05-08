@@ -1,5 +1,6 @@
 package com.bsac.CompStore.filter;
 
+import com.bsac.CompStore.service.CustomUserDetailsService;
 import com.bsac.CompStore.service.UserService;
 import com.bsac.CompStore.utils.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -18,13 +19,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-    @Autowired
-    private UserService userService;
+    private CustomUserDetailsService userService;
+
+    private JwtUtil jwtUtil;
 
     @Autowired
-    private JwtUtil jwtUtil;
+    public JwtRequestFilter(CustomUserDetailsService userService, JwtUtil jwtUtil) {
+        this.userService = userService;
+        this.jwtUtil = jwtUtil;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
