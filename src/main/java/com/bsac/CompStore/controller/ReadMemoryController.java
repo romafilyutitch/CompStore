@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/readMemories")
+@CrossOrigin
 public class ReadMemoryController {
 
     private final ReadMemoryService readMemoryService;

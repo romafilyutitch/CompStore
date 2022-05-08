@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/processors")
+@CrossOrigin
 public class ProcessorController {
 
     private final ProcessorService processorService;

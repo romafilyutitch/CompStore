@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/graphicsUnits")
+@CrossOrigin
 public class GraphicsUnitController {
 
     private final GraphicsUnitService graphicsUnitService;

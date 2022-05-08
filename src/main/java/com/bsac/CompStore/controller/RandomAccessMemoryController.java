@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/randomAccessMemories")
+@CrossOrigin
 public class RandomAccessMemoryController {
 
     private final RandomAccessMemoryService randomAccessMemoryService;
