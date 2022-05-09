@@ -44,7 +44,7 @@ public class UserService {
     }
 
     public User save(User user) {
-        user.setUserRole(Role.CUSTOMER);
+        user.setUserRole(Role.ROLE_CUSTOMER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

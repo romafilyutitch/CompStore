@@ -34,13 +34,13 @@ public class UserServiceUnitTest {
         user1.setId(1);
         user1.setUsername("username");
         user1.setPassword("password");
-        user1.setUserRole(Role.CUSTOMER);
+        user1.setUserRole(Role.ROLE_CUSTOMER);
         user1.setEmail("email@email.ru");
 
         user2.setId(2);
         user2.setUsername("username");
         user2.setPassword("password");
-        user2.setUserRole(Role.ADMIN);
+        user2.setUserRole(Role.ROLE_ADMIN);
         user2.setEmail("email@email.com");
     }
 

@@ -1,8 +1,9 @@
 package com.bsac.CompStore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class User {
     @Column
     @NotBlank(message = "User password is mandatory")
     @Size(min = 5, message = "User password must be bigger than 5 characters length")
+    @JsonIgnore
     private String password;
 
     @Enumerated(EnumType.STRING)

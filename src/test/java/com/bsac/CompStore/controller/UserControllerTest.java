@@ -43,19 +43,19 @@ public class UserControllerTest {
     @BeforeEach
     public void setUp() {
         user1.setId(1);
-        user1.setUserRole(Role.CUSTOMER);
+        user1.setUserRole(Role.ROLE_CUSTOMER);
         user1.setUsername("user");
         user1.setPassword("password");
         user1.setEmail("email@email.com");
 
         user2.setId(2);
-        user2.setUserRole(Role.ADMIN);
+        user2.setUserRole(Role.ROLE_ADMIN);
         user2.setUsername("admin");
         user2.setPassword("admin");
         user2.setEmail("admin@admin.com");
 
         user3.setId(3);
-        user3.setUserRole(Role.CUSTOMER);
+        user3.setUserRole(Role.ROLE_CUSTOMER);
         user3.setUsername("customer");
         user3.setPassword("customer");
         user3.setEmail("customer@cusomer.com");
