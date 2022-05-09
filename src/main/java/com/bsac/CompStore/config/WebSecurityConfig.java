@@ -3,7 +3,6 @@ package com.bsac.CompStore.config;
 import com.bsac.CompStore.filter.JwtRequestFilter;
 import com.bsac.CompStore.model.JwtAuthenticationEntryPoint;
 import com.bsac.CompStore.service.CustomUserDetailsService;
-import com.bsac.CompStore.service.UserService;
 import com.bsac.CompStore.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -60,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //We don't need CSRF for this example
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
                 //don't authenticate this particular request
                 .authorizeRequests().antMatchers("/authenticate", "/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/computers", "/computers/{id}", "/computers/{id}/images").permitAll()
