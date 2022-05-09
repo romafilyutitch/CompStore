@@ -65,6 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/authenticate", "/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/computers", "/computers/{id}", "/computers/{id}/images").permitAll()
                 .antMatchers(HttpMethod.GET, "/users", "/users/{id}").hasRole("CUSTOMER")
+                .antMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/users/{id}").access("@userSecurity.hasUserId(authentication, #id)")
                 //all other requests need to be authenticated
                 .anyRequest().authenticated().and()
                 //make sure we use stateless session; sessions won't be used to
