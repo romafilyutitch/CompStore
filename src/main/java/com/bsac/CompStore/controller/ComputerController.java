@@ -4,6 +4,7 @@ import com.bsac.CompStore.exception.ErrorDetails;
 import com.bsac.CompStore.exception.ResourceNotFoundException;
 import com.bsac.CompStore.model.Computer;
 import com.bsac.CompStore.model.Image;
+import com.bsac.CompStore.model.Review;
 import com.bsac.CompStore.repository.ImageRepository;
 import com.bsac.CompStore.service.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,18 @@ public class ComputerController {
     public Computer save(@Valid @RequestBody Computer computer) {
         System.out.println(computer);
         return computerService.save(computer);
+    }
+
+    @GetMapping("/{id}/reviews")
+    public List<Review> findAllReviews(@PathVariable("id") int id) {
+        Computer foundComputer = this.computerService.findById(id);
+        return foundComputer.getReviews();
+    }
+
+    @PostMapping("/{id}/reviews")
+    public Computer postReview(@PathVariable("id") int id, @RequestBody Review review) {
+        Computer foundComputer = this.computerService.findById(id);
+        return this.computerService.postReview(foundComputer, review);
     }
 
     @GetMapping("/{id}/images")

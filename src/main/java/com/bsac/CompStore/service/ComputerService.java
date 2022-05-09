@@ -2,9 +2,9 @@ package com.bsac.CompStore.service;
 
 import com.bsac.CompStore.exception.ResourceNotFoundException;
 import com.bsac.CompStore.model.Computer;
+import com.bsac.CompStore.model.Review;
 import com.bsac.CompStore.repository.ComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,5 +63,10 @@ public class ComputerService {
 
     public List<Computer> findByName(String name) {
         return computerRepository.findByNameContains(name);
+    }
+
+    public Computer postReview(Computer computer, Review review) {
+        computer.getReviews().add(review);
+        return this.computerRepository.save(computer);
     }
 }
