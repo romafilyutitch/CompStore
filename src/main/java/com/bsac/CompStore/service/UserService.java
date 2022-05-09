@@ -39,6 +39,14 @@ public class UserService {
         return optionalUser.get();
     }
 
+    public User findByUsername(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if(optionalUser.isEmpty()) {
+            throw new ResourceNotFoundException(String.format("User wasn't found by username %s", username));
+        }
+        return optionalUser.get();
+    }
+
     public void delete(int id) {
         userRepository.deleteById(id);
     }

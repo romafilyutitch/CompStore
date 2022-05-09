@@ -4,10 +4,11 @@ import com.bsac.CompStore.exception.ErrorDetails;
 import com.bsac.CompStore.exception.ResourceNotFoundException;
 import com.bsac.CompStore.model.User;
 import com.bsac.CompStore.service.UserService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,6 +35,14 @@ public class UserController {
     @GetMapping("/{id}")
     public User findById(@PathVariable int id) {
         return userService.findById(id);
+    }
+
+    @GetMapping("/me")
+    public User findMe(Authentication authentication) {
+        System.out.println("find me");
+        Object principal = authentication.getPrincipal();
+        UserDetails userDetails = (UserDetails) principal;
+        return this.userService.findByUsername(userDetails.getUsername());
     }
 
     @DeleteMapping("/{id}")
