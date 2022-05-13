@@ -1,8 +1,10 @@
 package com.bsac.CompStore.service;
 
 import com.bsac.CompStore.exception.ResourceNotFoundException;
+import com.bsac.CompStore.model.OrderStatus;
 import com.bsac.CompStore.model.Role;
 import com.bsac.CompStore.model.User;
+import com.bsac.CompStore.model.UserOrder;
 import com.bsac.CompStore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,12 +12,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -68,5 +72,12 @@ public class UserService {
         savedUser.setPassword(user.getPassword());
         savedUser.setOrders(user.getOrders());
         return savedUser;
+    }
+
+    public User addOrder(User foundUser, UserOrder userOrder) {
+        final List<UserOrder> ordersList = foundUser.getOrders();
+        userOrder.setStatus(OrderStatus.NEW);
+        ordersList.add(userOrder);
+        return this.userRepository.save(foundUser);
     }
 }

@@ -34,7 +34,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role userRole;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<UserOrder> orders = new ArrayList<>();
 

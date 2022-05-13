@@ -3,6 +3,7 @@ package com.bsac.CompStore.controller;
 import com.bsac.CompStore.exception.ErrorDetails;
 import com.bsac.CompStore.exception.ResourceNotFoundException;
 import com.bsac.CompStore.model.User;
+import com.bsac.CompStore.model.UserOrder;
 import com.bsac.CompStore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,10 +40,21 @@ public class UserController {
 
     @GetMapping("/me")
     public User findMe(Authentication authentication) {
-        System.out.println("find me");
         Object principal = authentication.getPrincipal();
         UserDetails userDetails = (UserDetails) principal;
         return this.userService.findByUsername(userDetails.getUsername());
+    }
+
+    @GetMapping("/{id}/orders")
+    public List<UserOrder> getUserOrders(@PathVariable("id") int id) {
+        User foundUser = this.userService.findById(id);
+        return foundUser.getOrders();
+    }
+
+    @PostMapping("/{id}/orders")
+    public User addOrder(@PathVariable("id") int id, @RequestBody UserOrder userOrder) {
+        final User foundUser = this.userService.findById(id);
+        return this.userService.addOrder(foundUser, userOrder);
     }
 
     @DeleteMapping("/{id}")
