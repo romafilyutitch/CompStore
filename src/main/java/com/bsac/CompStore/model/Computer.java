@@ -1,5 +1,7 @@
 package com.bsac.CompStore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -56,6 +58,7 @@ public class Computer {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "computer_id")
+    @JsonIgnore
     private List<Review> reviews;
 
     public int getId() {

@@ -84,6 +84,11 @@ public class ComputerController {
         return imageRepository.findByComputerId(foundComputer.getId());
     }
 
+    @GetMapping("/topByAverage")
+    public List<Computer> findTopByAverage() {
+        return this.computerService.findTopByAverage();
+    }
+
     @PostMapping("/{id}/images")
     @ResponseStatus(HttpStatus.OK)
     public void saveImage(@RequestParam("file") MultipartFile file, @PathVariable int id) throws IOException {

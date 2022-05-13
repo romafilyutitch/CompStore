@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 //don't authenticate this particular request
                 .authorizeRequests().antMatchers("/authenticate", "/register").permitAll()
-                .antMatchers(HttpMethod.GET, "/computers", "/computers/{id}", "/computers/{id}/images").permitAll()
+                .antMatchers(HttpMethod.GET, "/computers", "/computers/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/users/me").authenticated()
                 .antMatchers(HttpMethod.GET, "/users", "/users/{id}").hasRole("ADMIN")
                 //all other requests need to be authenticated

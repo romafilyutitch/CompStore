@@ -7,8 +7,7 @@ import com.bsac.CompStore.repository.ComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ComputerService {
@@ -68,5 +67,31 @@ public class ComputerService {
     public Computer postReview(Computer computer, Review review) {
         computer.getReviews().add(review);
         return this.computerRepository.save(computer);
+    }
+
+    public List<Computer> findTopByAverage() {
+        List<Computer> topByAverage = new ArrayList<>();
+        Map<Double, Computer> computerAverageScoreMap = new HashMap<>();
+        List<Double> averageQueue = new ArrayList<Double>();
+        List<Computer> allComputers = this.computerRepository.findAll();
+        allComputers.forEach(computer -> {
+            List<Review> reviews = computer.getReviews();
+            final double reviewsSize = reviews.size();
+            double reviewsSum = reviews.stream().map(Review::getScore).reduce(0, Integer::sum);
+            computerAverageScoreMap.put(reviewsSum / reviewsSize, computer);
+            averageQueue.add(reviewsSum / reviewsSize);
+        });
+        averageQueue.sort(Comparator.comparingDouble(one -> (double) one).reversed());
+        System.out.println(averageQueue);
+        if(averageQueue.size() > 5) {
+            for (int i = 0; i < 5; i++) {
+                topByAverage.add(computerAverageScoreMap.get(averageQueue.remove(i)));
+            }
+        } else {
+            for (int i = 0; i < averageQueue.size(); i++) {
+                topByAverage.add(computerAverageScoreMap.get(averageQueue.remove(i)));
+            }
+        }
+        return topByAverage;
     }
 }
